@@ -48,7 +48,7 @@
                     singer: "杨清柠",
                     name: '四年半',
                     src: 'video/sinianban.mp3'
-                }]
+                }] 
             $scope.page = 0;
             // 下一曲
             $scope.next = function(){
@@ -99,7 +99,6 @@
         </section>
         <video id="video" ng-src="{{data[page].src}}" ></video>
             <!-- <source ng-repeat="d in data" ng-src="{{d.src}}" /> controls-->
-        
         <footer>
             <a href="javascript:;" class="iconfont icon-suopingshangyiqu" ng-click="pre()"></a>
             <a href="javascript:;" class="iconfont icon-bofang" ng-if="flag" ng-click="anima()"></a> 
