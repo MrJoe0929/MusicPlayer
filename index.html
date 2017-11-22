@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body ng-app="app" ng-controller="wrap">
+    <div class="markImg"></div>
+    <div class="wrap">
+        <header>
+            <a href="javascript:;" class="iconfont icon-xiangzuo
+            "></a>
+        </header>
+        <section>
+            <div class="img">
+                <img ng-src="{{data[page].img}}" ng-class="{true:'animat'}[rotate]">
+            </div>
+            <marquee direction=up behavior=scroll scrollamount=3 scrolldelay=10 bgcolor=#ffffff height=30 width=100% style="text-align: center">{{data[page].singer}} - {{data[page].name}} </marquee>
+        </section>
+        <video id="video" ng-src="{{data[page].src}}" ></video>
+            <!-- <source ng-repeat="d in data" ng-src="{{d.src}}" /> controls-->
+        
+        <footer>
+            <a href="javascript:;" class="iconfont icon-suopingshangyiqu" ng-click="pre()"></a>
+            <a href="javascript:;" class="iconfont icon-bofang" ng-if="flag" ng-click="anima()"></a> 
+            <a href="javascript:;" class="iconfont icon-zanting2" ng-if="!flag" ng-click="anima()"></a> 
+            <a href="javascript:;" class="iconfont icon-suopingxiayiqu" ng-click="next()"></a>
+            {{page}}
+        </footer>
+    </div>
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth/375*50+'px';
+        var app = angular.module('app', []);
+        app.controller('wrap', function($scope){
+            $scope.flag = true;
+            $scope.rotate = false;
+            $scope.anima = function(){
+                $scope.flag = !$scope.flag;
+                $scope.rotate = !$scope.rotate;
+                if($scope.rotate){
+                    $('#video')[0].play();
+                }else{
+                    $('#video')[0].pause();
+                }
+            }
+            $scope.data = [{
+                    id: 1,
+                    img: 'images/1.jpg',
+                    singer: "岑宁儿",
+                    name: '追光者',
+                    src: 'video/zhuiguangzhe.mp3'
+                },{
+                    id: 2,
+                    img: 'images/2.jpg',
+                    singer: "汪铂",
+                    name: '这个年纪',
+                    src: 'video/zhegenianji.mp3'
+                },{
+                    id: 3,
+                    img: 'images/3.jpg',
+                    singer: "王俊琪",
+                    name: '我多喜欢你，你会知道',
+                    src: 'video/woduoxihuanninizhidao.mp3'
+                },{
+                    id: 4,
+                    img: 'images/4.jpg',
+                    singer: "杨清柠",
+                    name: '四年半',
+                    src: 'video/sinianban.mp3'
+                }]
+            $scope.page = 0;
+            // 下一曲
+            $scope.next = function(){
+                if($scope.page >= $scope.data.length-1){
+                    $scope.page = 0;
+                    return false;
+                }
+                $scope.page++;
+                play();
+            }
+            // 上一曲
+            $scope.pre = function(){
+                if($scope.page <= 0){
+                    $scope.page = $scope.data.length-1;
+                    return false;
+                }
+                $scope.page--;
+                play();
+            }
+            // 自动播放下一首
+            $('#video')[0].onended = function(){
+                $scope.next();
+                $scope.$apply();
+            }
+            // 播放
+            function play(){
+                if($scope.rotate){
+                    setTimeout(() => {
+                        $('#video')[0].play();
+                    }, 0);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
