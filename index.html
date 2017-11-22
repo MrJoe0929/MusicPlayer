@@ -9,31 +9,6 @@
     <link rel="stylesheet" href="fonts/iconfont.css">
     <script src="js/angular.min.js"></script>
     <script src="js/jquery-1.8.3.min.js"></script>
-</head>
-<body ng-app="app" ng-controller="wrap">
-    <div class="markImg"></div>
-    <div class="wrap">
-        <header>
-            <a href="javascript:;" class="iconfont icon-xiangzuo
-            "></a>
-        </header>
-        <section>
-            <div class="img">
-                <img ng-src="{{data[page].img}}" ng-class="{true:'animat'}[rotate]">
-            </div>
-            <marquee direction=up behavior=scroll scrollamount=3 scrolldelay=10 bgcolor=#ffffff height=30 width=100% style="text-align: center">{{data[page].singer}} - {{data[page].name}} </marquee>
-        </section>
-        <video id="video" ng-src="{{data[page].src}}" ></video>
-            <!-- <source ng-repeat="d in data" ng-src="{{d.src}}" /> controls-->
-        
-        <footer>
-            <a href="javascript:;" class="iconfont icon-suopingshangyiqu" ng-click="pre()"></a>
-            <a href="javascript:;" class="iconfont icon-bofang" ng-if="flag" ng-click="anima()"></a> 
-            <a href="javascript:;" class="iconfont icon-zanting2" ng-if="!flag" ng-click="anima()"></a> 
-            <a href="javascript:;" class="iconfont icon-suopingxiayiqu" ng-click="next()"></a>
-            {{page}}
-        </footer>
-    </div>
     <script>
         document.documentElement.style.fontSize = document.documentElement.clientWidth/375*50+'px';
         var app = angular.module('app', []);
@@ -108,5 +83,29 @@
             }
         })
     </script>
+</head>
+<body ng-app="app" ng-controller="wrap">
+    <div class="markImg"></div>
+    <div class="wrap">
+        <header>
+            <a href="javascript:;" class="iconfont icon-xiangzuo
+            "></a>
+        </header>
+        <section>
+            <div class="img">
+                <img ng-src="{{data[page].img}}" ng-class="{true:'animat'}[rotate]">
+            </div>
+            <marquee direction=up behavior=scroll scrollamount=3 scrolldelay=10 bgcolor=#ffffff height=30 width=100% style="text-align: center">{{data[page].singer}} - {{data[page].name}} </marquee>
+        </section>
+        <video id="video" ng-src="{{data[page].src}}" ></video>
+            <!-- <source ng-repeat="d in data" ng-src="{{d.src}}" /> controls-->
+        
+        <footer>
+            <a href="javascript:;" class="iconfont icon-suopingshangyiqu" ng-click="pre()"></a>
+            <a href="javascript:;" class="iconfont icon-bofang" ng-if="flag" ng-click="anima()"></a> 
+            <a href="javascript:;" class="iconfont icon-zanting2" ng-if="!flag" ng-click="anima()"></a> 
+            <a href="javascript:;" class="iconfont icon-suopingxiayiqu" ng-click="next()"></a>
+        </footer>
+    </div>
 </body>
 </html>
